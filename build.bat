@@ -2,6 +2,7 @@
 setlocal enabledelayedexpansion
 
 IF "%DC%"=="" SET DC="dmd"
+IF "%MFLAGS%"=="" SET MFLAGS="-m32"
 
 set DFLAGS=-g
 set CORE=
@@ -18,6 +19,6 @@ for %%x in (stdx-allocator\source\stdx\allocator\*.d) do set STDXALLOCATOR=!STDX
 for %%x in (stdx-allocator\source\stdx\allocator\building_blocks\*.d) do set STDXALLOCATORBLOCKS=!STDXALLOCATORBLOCKS! %%x
 
 @echo on
-%DC% %CORE% %STD% %STDD% %STDE% %STDXALLOCATOR% %STDXALLOCATORBLOCKS% -I"stdx-allocator\source" -I"libdparse\src" %DFLAGS% -of%OBIN%.exe
+%DC% %CORE% %STD% %STDD% %STDE% %STDXALLOCATOR% %STDXALLOCATORBLOCKS% -I"stdx-allocator\source" -I"libdparse\src" %DFLAGS% %MFLAGS% -of%OBIN%.exe
 
 if exist %OBIN%.obj del %OBIN%.obj
